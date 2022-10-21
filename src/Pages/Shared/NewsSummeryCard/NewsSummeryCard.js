@@ -45,9 +45,9 @@ const NewsSummeryCard = ({ news }) => {
           <FaStar className="text-warning me-2"></FaStar>
           <span className="m-0">{rating?.number}</span>
         </div>
-        <p className="m-0">
+        <div className="m-0">
           Total Views: {total_view} <FaEye></FaEye>
-        </p>
+        </div>
       </Card.Footer>
     </Card>
   );

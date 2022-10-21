@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import LeftNav from "../LeftNav/LeftNav";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   return (
     <Navbar
       className="mb-2"
@@ -31,10 +34,18 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
+          <Nav className="d-flex align-items-center justify-content-around">
+            <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+              {user?.photoURL ? (
+                <Image
+                  style={{ height: "40px" }}
+                  roundedCircle
+                  src={user.photoURL}
+                ></Image>
+              ) : (
+                <p>No image</p>
+              )}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
